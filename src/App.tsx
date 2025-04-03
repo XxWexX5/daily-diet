@@ -2,9 +2,9 @@ import { StatusBar } from "expo-status-bar";
 
 import { Text, View } from "react-native";
 
-import Logo from "./assets/images/logo.svg";
+import Logo from "@images/logo.svg";
 
-import "./styles/global.css";
+import "@styles/global.css";
 
 export default function App() {
   return (
