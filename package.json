@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "expo": "~52.0.42",
+    "expo-font": "^13.0.4",
+    "expo-splash-screen": "^0.29.22",
     "expo-status-bar": "~2.0.1",
     "nativewind": "^4.1.23",
     "react": "18.3.1",
