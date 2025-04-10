@@ -12,6 +12,8 @@ import "@styles/global.css";
 
 import * as SplashScreen from "expo-splash-screen";
 
+import { Loader } from "@components/Loader";
+
 export default function App() {
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
@@ -25,7 +27,7 @@ export default function App() {
   }, [loaded]);
 
   if (!loaded) {
-    return <Text>Carregando!</Text>;
+    return <Loader />;
   }
 
   return (
@@ -37,6 +39,7 @@ export default function App() {
       <Text className="text-blue-500 text-xl font-bold font-nunito">
         Hello World!
       </Text>
+
       <StatusBar style="auto" />
     </View>
   );
