@@ -15,6 +15,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { Loader } from "@components/Loader";
 
 import { Horse, Heart, Cube } from "phosphor-react-native";
+import { ButtonIcon } from "@components/ButtonIcon";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -38,7 +39,7 @@ export default function App() {
         <Logo width={100} height={100} />
       </View>
 
-      <Text className="text-blue-500 text-xl font-bold font-nunito">
+      <Text className="text-success-900 text-xl font-bold font-nunito">
         Hello World!
       </Text>
 
@@ -51,6 +52,8 @@ export default function App() {
         style={{ width: 244, height: 288 }}
         resizeMode="contain"
       />
+
+      <ButtonIcon type="primary" icon="add-a-photo" />
 
       <StatusBar style="auto" />
     </View>
