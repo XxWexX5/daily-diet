@@ -4,7 +4,7 @@ import { useFonts } from "expo-font";
 
 import { StatusBar } from "expo-status-bar";
 
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 
 import Logo from "@images/logo.svg";
 
@@ -45,6 +45,12 @@ export default function App() {
       <Horse />
       <Heart color="#AE2983" weight="fill" size={32} />
       <Cube color="teal" weight="duotone" />
+
+      <Image
+        source={require("./assets/images/image-woman-happy.png")}
+        style={{ width: 244, height: 288 }}
+        resizeMode="contain"
+      />
 
       <StatusBar style="auto" />
     </View>
