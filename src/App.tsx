@@ -6,8 +6,6 @@ import { StatusBar } from "expo-status-bar";
 
 import { Image, Text, View } from "react-native";
 
-import Logo from "@images/logo.svg";
-
 import "@styles/global.css";
 
 import * as SplashScreen from "expo-splash-screen";
@@ -15,7 +13,9 @@ import * as SplashScreen from "expo-splash-screen";
 import { Loader } from "@components/Loader";
 
 import { Horse, Heart, Cube } from "phosphor-react-native";
+
 import { ButtonIcon } from "@components/ButtonIcon";
+import { Logo } from "@components/Logo";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -35,13 +35,7 @@ export default function App() {
 
   return (
     <View className="flex-1 items-center justify-center bg-white">
-      <View>
-        <Logo width={100} height={100} />
-      </View>
-
-      <Text className="text-success-900 text-xl font-bold font-nunito">
-        Hello World!
-      </Text>
+      <Logo />
 
       <Horse />
       <Heart color="#AE2983" weight="fill" size={32} />
