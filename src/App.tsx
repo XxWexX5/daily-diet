@@ -16,6 +16,7 @@ import { Horse, Heart, Cube } from "phosphor-react-native";
 
 import { ButtonIcon } from "@components/ButtonIcon";
 import { Logo } from "@components/Logo";
+import { Avatar } from "@components/Avatar";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -46,6 +47,8 @@ export default function App() {
         style={{ width: 244, height: 288 }}
         resizeMode="contain"
       />
+
+      <Avatar />
 
       <ButtonIcon type="primary" icon="add-a-photo" />
 
