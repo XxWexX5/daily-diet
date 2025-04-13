@@ -16,8 +16,8 @@ export default function App() {
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
     NunitoItalic: require("./assets/fonts/NunitoSans/NunitoSans-Italic.ttf"),
-    NunitoBold: require("./assets/fonts/NunitoSans/Nunito-Bold.ttf"),
-    NunitoLight: require("./assets/fonts/NunitoSans/Nunito-Light.ttf"),
+    NunitoBold: require("./assets/fonts/NunitoSans/NunitoSans-Bold.ttf"),
+    NunitoLight: require("./assets/fonts/NunitoSans/NunitoSans-Light.ttf"),
   });
 
   useEffect(() => {

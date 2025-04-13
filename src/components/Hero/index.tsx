@@ -6,8 +6,8 @@ import { colors } from "@theme/index";
 
 export function Hero() {
   return (
-    <TouchableOpacity className="relative bg-success-500 rounded-lg p-12">
-      <View className="absolute top-3 right-3">
+    <TouchableOpacity className="relative bg-success-500 rounded-xl p-12">
+      <View className="absolute top-2 right-2">
         <Icon.ArrowUpRight color={colors.success[900]} size={32} />
       </View>
 
