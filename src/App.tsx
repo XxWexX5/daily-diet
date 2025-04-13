@@ -10,11 +10,14 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { Loader } from "@components/Loader";
 import { Header } from "@components/Header";
+import { Hero } from "@components/Hero";
 
 export default function App() {
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
     NunitoItalic: require("./assets/fonts/NunitoSans/NunitoSans-Italic.ttf"),
+    NunitoBold: require("./assets/fonts/NunitoSans/Nunito-Bold.ttf"),
+    NunitoLight: require("./assets/fonts/NunitoSans/Nunito-Light.ttf"),
   });
 
   useEffect(() => {
@@ -39,6 +42,8 @@ export default function App() {
 
       <View className="bg-neutral-full min-h-screen pt-6 px-8">
         <Header />
+
+        <Hero />
       </View>
     </>
   );

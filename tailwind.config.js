@@ -11,7 +11,9 @@ module.exports = {
     extend: {
       fontFamily: {
         nunito: ["Nunito", "sans-serif"],
+        nunitoLight: ["NunitoLight", "sans-serif"],
         nunitoItalic: ["NunitoItalic", "sans-serif"],
+        nunitoBold: ["NunitoBold", "sans-serif"],
         system: platformSelect({
           ios: "Nunito",
           android: "Nunito",
