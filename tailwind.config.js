@@ -21,6 +21,9 @@ module.exports = {
         }),
       },
       colors,
+      borderRadius: {
+        default: '0.75rem'
+      }
     }
   },
   plugins: [],
