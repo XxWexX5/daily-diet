@@ -15,6 +15,7 @@ import { Header } from "@components/Header";
 import { Hero } from "@components/Hero";
 import { Button } from "@components/Button";
 import { colors } from "./theme";
+import { Topic } from "@components/Topic";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -56,6 +57,8 @@ export default function App() {
             Nova refeição
           </Text>
         </Button>
+
+        <Topic isDiet />
       </View>
     </>
   );
