@@ -3,6 +3,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import * as Icon from "phosphor-react-native";
 
 import { colors } from "@theme/index";
+import { GroupText } from "@components/GroupText";
 
 export function Hero() {
   return (
@@ -12,10 +13,7 @@ export function Hero() {
       </View>
 
       <View className="justify-center items-center">
-        <Text className="font-nunitoBold text-4xl">90,86%</Text>
-        <Text className="font-nunitoLight text-base">
-          das refeições dentro da dieta
-        </Text>
+        <GroupText title="90,86%" text="das refeições dentro da dieta" />
       </View>
     </TouchableOpacity>
   );

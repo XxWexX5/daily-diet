@@ -16,6 +16,7 @@ import { Hero } from "@components/Hero";
 import { Button } from "@components/Button";
 import { colors } from "./theme";
 import { Topic } from "@components/Topic";
+import { TopBanner } from "@components/TopBanner";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -37,13 +38,15 @@ export default function App() {
 
   return (
     <>
-      <SafeAreaView className="bg-neutral-full" />
+      <SafeAreaView className="bg-success-600" />
 
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
         translucent
       />
+
+      <TopBanner />
 
       <View className="bg-neutral-full min-h-screen pt-6 px-8">
         <Header />

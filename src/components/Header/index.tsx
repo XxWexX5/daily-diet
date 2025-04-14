@@ -4,7 +4,7 @@ import { View } from "react-native";
 
 export function Header() {
   return (
-    <View className="flex-row w-full justify-between">
+    <View className="flex-row w-full items-center justify-between">
       <Logo />
 
       <Avatar />
