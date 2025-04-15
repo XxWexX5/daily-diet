@@ -18,6 +18,7 @@ import { colors } from "./theme";
 import { Topic } from "@components/Topic";
 import { TopBanner } from "@components/TopBanner";
 import { Title } from "@components/Title";
+import { Card } from "@components/Card";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -65,6 +66,11 @@ export default function App() {
         <Topic isDiet />
 
         <Title content="12.08.22" />
+
+        <Card.Error>
+          <Card.Title>22</Card.Title>
+          <Card.Text>melhor sequência de pratos dentro da dieta</Card.Text>
+        </Card.Error>
       </View>
     </>
   );

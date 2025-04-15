@@ -3,7 +3,8 @@ import { TouchableOpacity, View } from "react-native";
 import * as Icon from "phosphor-react-native";
 
 import { colors } from "@theme/index";
-import { GroupText } from "./GroupText";
+
+import { Wrap } from "@components/Wrap";
 
 export function TopBanner() {
   return (
@@ -12,7 +13,8 @@ export function TopBanner() {
         <Icon.ArrowLeft color={colors.success[900]} size={32} />
       </TouchableOpacity>
 
-      <GroupText title="90,86%" text="das refeições dentro da dieta" />
+      <Wrap.Title>90,86%</Wrap.Title>
+      <Wrap.Content>das refeições dentro da dieta</Wrap.Content>
     </View>
   );
 }

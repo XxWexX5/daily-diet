@@ -2,8 +2,9 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 import * as Icon from "phosphor-react-native";
 
+import { Wrap } from "@components/Wrap";
+
 import { colors } from "@theme/index";
-import { GroupText } from "@components/GroupText";
 
 export function Hero() {
   return (
@@ -13,7 +14,9 @@ export function Hero() {
       </View>
 
       <View className="justify-center items-center">
-        <GroupText title="90,86%" text="das refeições dentro da dieta" />
+        <Wrap.Title>90,86%</Wrap.Title>
+
+        <Wrap.Content>das refeições dentro da dieta</Wrap.Content>
       </View>
     </TouchableOpacity>
   );
