@@ -17,6 +17,7 @@ import { Button } from "@components/Button";
 import { colors } from "./theme";
 import { Topic } from "@components/Topic";
 import { TopBanner } from "@components/TopBanner";
+import { Title } from "@components/Title";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -62,6 +63,8 @@ export default function App() {
         </Button>
 
         <Topic isDiet />
+
+        <Title content="12.08.22" />
       </View>
     </>
   );
