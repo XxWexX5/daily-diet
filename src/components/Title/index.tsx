@@ -1,9 +1,19 @@
-import { Text } from "react-native";
+import { ReactNode } from "react";
 
-interface TitleProps {
-  content: string;
-}
+import { Text, TextProps } from "react-native";
+import { twMerge } from "tailwind-merge";
 
-export function Title({ content }: TitleProps) {
-  return <Text className="font-nunitoBold text-2xl">{content}</Text>;
+type TitleProps = TextProps & {
+  children: ReactNode;
+};
+
+export function Title({ children, className, ...rest }: TitleProps) {
+  return (
+    <Text
+      className={twMerge(`font-nunitoBold text-2xl ${className}`)}
+      {...rest}
+    >
+      {children}
+    </Text>
+  );
 }

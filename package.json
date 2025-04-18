@@ -9,6 +9,7 @@
     "web": "expo start --web"
   },
   "dependencies": {
+    "@react-native-community/datetimepicker": "^8.3.0",
     "expo": "~52.0.42",
     "expo-font": "^13.0.4",
     "expo-splash-screen": "^0.29.22",
@@ -17,6 +18,7 @@
     "phosphor-react-native": "^2.3.1",
     "react": "18.3.1",
     "react-native": "0.76.8",
+    "react-native-modal-datetime-picker": "^18.0.0",
     "react-native-reanimated": "^3.16.2",
     "react-native-svg": "^15.11.2",
     "tailwind-merge": "^3.2.0",

@@ -27,6 +27,7 @@ import { TopBanner } from "@components/TopBanner";
 import { Title } from "@components/Title";
 import { Card } from "@components/Card";
 import { Input } from "@components/Input";
+import { DateInput } from "@components/DateInput";
 
 export default function App() {
   const [description, setDescription] = useState("");
@@ -111,6 +112,9 @@ export default function App() {
           onBlur={() => Keyboard.dismiss()}
           textAlignVertical="top"
         />
+
+        <Title className="text-xl text-neutral-800">Data</Title>
+        <DateInput />
       </View>
     </>
   );
