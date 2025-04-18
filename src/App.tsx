@@ -95,11 +95,15 @@ export default function App() {
           <Card.Text>melhor sequência de pratos dentro da dieta</Card.Text>
         </Card.Error>*/}
 
+        <Title className="text-xl text-neutral-800">Nome</Title>
+
         <Input
           placeholder="Digite o nome"
           keyboardType="ascii-capable"
           onBlur={() => Keyboard.dismiss()}
         />
+
+        <Title className="text-xl text-neutral-800">Descrição</Title>
 
         <Input
           value={description}
@@ -114,6 +118,7 @@ export default function App() {
         />
 
         <Title className="text-xl text-neutral-800">Data</Title>
+
         <DateInput />
       </View>
     </>
