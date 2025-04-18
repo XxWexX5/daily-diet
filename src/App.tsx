@@ -1,8 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useFonts } from "expo-font";
 
-import { SafeAreaView, StatusBar, Text, View } from "react-native";
+import {
+  Keyboard,
+  SafeAreaView,
+  StatusBar,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 import "@styles/global.css";
 
@@ -22,6 +29,10 @@ import { Card } from "@components/Card";
 import { Input } from "@components/Input";
 
 export default function App() {
+  const [description, setDescription] = useState("");
+
+  const descriptionInputRef = useRef<TextInput>(null);
+
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
     NunitoItalic: require("./assets/fonts/NunitoSans/NunitoSans-Italic.ttf"),
@@ -52,7 +63,7 @@ export default function App() {
       <TopBanner />
 
       <View className="bg-neutral-full min-h-screen pt-6 px-8">
-        <Header />
+        {/* <Header />
 
         <Hero />
 
@@ -81,9 +92,25 @@ export default function App() {
         <Card.Error>
           <Card.Title>22</Card.Title>
           <Card.Text>melhor sequência de pratos dentro da dieta</Card.Text>
-        </Card.Error>
+        </Card.Error>*/}
 
-        <Input placeholder="Digite o seu nome" keyboardType="ascii-capable" />
+        <Input
+          placeholder="Digite o nome"
+          keyboardType="ascii-capable"
+          onBlur={() => Keyboard.dismiss()}
+        />
+
+        <Input
+          value={description}
+          onChangeText={setDescription}
+          inputRef={descriptionInputRef}
+          placeholder="Digite a descrição"
+          multiline
+          numberOfLines={6}
+          className="h-[10rem]"
+          onBlur={() => Keyboard.dismiss()}
+          textAlignVertical="top"
+        />
       </View>
     </>
   );

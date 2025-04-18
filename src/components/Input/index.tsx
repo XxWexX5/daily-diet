@@ -1,9 +1,17 @@
 import { TextInput, TextInputProps } from "react-native";
 
-export function Input({ ...rest }: TextInputProps) {
+import { twMerge } from "tailwind-merge";
+
+type InputProps = TextInputProps & {
+  inputRef?: React.RefObject<TextInput>;
+};
+export function Input({ inputRef, className, ...rest }: InputProps) {
   return (
     <TextInput
-      className="border border-neutral-300 p-5 rounded-default text-neutral-900 font-nunitoLight text-lg"
+      ref={inputRef}
+      className={twMerge(
+        `border border-neutral-300 p-5 rounded-default text-neutral-900 font-nunitoLight text-lg ${className}`
+      )}
       {...rest}
     />
   );
