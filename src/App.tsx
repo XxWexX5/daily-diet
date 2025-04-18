@@ -34,12 +34,43 @@ export default function App() {
 
   const descriptionInputRef = useRef<TextInput>(null);
 
+  const getCurrentTime = () => {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
+    return `${hours}:${minutes}`;
+  };
+
+  const [date, setDate] = useState(new Date());
+  const [selectedTime, setSelectedTime] = useState(getCurrentTime());
+
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [isTimePickerVisible, setTimePickerVisible] = useState(false);
+
+  const showTimePicker = () => setTimePickerVisible(true);
+  const hideTimePicker = () => setTimePickerVisible(false);
+
+  const showDatePicker = () => setDatePickerVisibility(true);
+  const hideDatePicker = () => setDatePickerVisibility(false);
+
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
     NunitoItalic: require("./assets/fonts/NunitoSans/NunitoSans-Italic.ttf"),
     NunitoBold: require("./assets/fonts/NunitoSans/NunitoSans-Bold.ttf"),
     NunitoLight: require("./assets/fonts/NunitoSans/NunitoSans-Light.ttf"),
   });
+
+  const handleConfirmTimer = (date: Date) => {
+    const hours = date.getHours().toString().padStart(2, "0");
+    const minutes = date.getMinutes().toString().padStart(2, "0");
+    setSelectedTime(`${hours}:${minutes}`);
+    hideTimePicker();
+  };
+
+  const handleConfirmDate = (selectedDate: Date) => {
+    setDate(selectedDate);
+    hideDatePicker();
+  };
 
   useEffect(() => {
     if (loaded) {
@@ -119,7 +150,27 @@ export default function App() {
 
         <Title className="text-xl text-neutral-800">Data</Title>
 
-        <DateInput />
+        <DateInput
+          mode="date"
+          data={date?.toLocaleDateString("pt-BR")}
+          showDatePicker={showDatePicker}
+          isDatePickerVisible={isDatePickerVisible}
+          onConfirm={handleConfirmDate}
+          onCancel={hideDatePicker}
+        />
+
+        <Title className="text-xl text-neutral-800">Hora</Title>
+
+        <DateInput
+          isVisible={isTimePickerVisible}
+          mode="time"
+          locale="pt-BR"
+          is24Hour={true}
+          onConfirm={handleConfirmTimer}
+          onCancel={hideTimePicker}
+          showDatePicker={showTimePicker}
+          data={selectedTime}
+        />
       </View>
     </>
   );
