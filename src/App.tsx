@@ -17,6 +17,8 @@ import * as SplashScreen from "expo-splash-screen";
 
 import * as Icon from "phosphor-react-native";
 
+import { useForm, Controller } from "react-hook-form";
+
 import { Loader } from "@components/Loader";
 import { Header } from "@components/Header";
 import { Hero } from "@components/Hero";
@@ -28,30 +30,25 @@ import { Title } from "@components/Title";
 import { Card } from "@components/Card";
 import { Input } from "@components/Input";
 import { DateInput } from "@components/DateInput";
+import { TimeInput } from "@components/TimeInput";
 
 export default function App() {
-  const [description, setDescription] = useState("");
-
-  const descriptionInputRef = useRef<TextInput>(null);
+  const {
+    setValue,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const getCurrentTime = () => {
     const now = new Date();
-    const hours = now.getHours().toString().padStart(2, "0");
-    const minutes = now.getMinutes().toString().padStart(2, "0");
-    return `${hours}:${minutes}`;
+    return now;
   };
 
-  const [date, setDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState(getCurrentTime());
-
-  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [isTimePickerVisible, setTimePickerVisible] = useState(false);
-
-  const showTimePicker = () => setTimePickerVisible(true);
-  const hideTimePicker = () => setTimePickerVisible(false);
-
-  const showDatePicker = () => setDatePickerVisibility(true);
-  const hideDatePicker = () => setDatePickerVisibility(false);
+  useEffect(() => {
+    setValue("data", new Date());
+    setValue("timer", getCurrentTime());
+  }, []);
 
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
@@ -60,17 +57,9 @@ export default function App() {
     NunitoLight: require("./assets/fonts/NunitoSans/NunitoSans-Light.ttf"),
   });
 
-  const handleConfirmTimer = (date: Date) => {
-    const hours = date.getHours().toString().padStart(2, "0");
-    const minutes = date.getMinutes().toString().padStart(2, "0");
-    setSelectedTime(`${hours}:${minutes}`);
-    hideTimePicker();
-  };
-
-  const handleConfirmDate = (selectedDate: Date) => {
-    setDate(selectedDate);
-    hideDatePicker();
-  };
+  function onSubmit(data: any) {
+    console.log("Form data", data);
+  }
 
   useEffect(() => {
     if (loaded) {
@@ -128,49 +117,84 @@ export default function App() {
 
         <Title className="text-xl text-neutral-800">Nome</Title>
 
-        <Input
-          placeholder="Digite o nome"
-          keyboardType="ascii-capable"
-          onBlur={() => Keyboard.dismiss()}
+        <Controller
+          control={control}
+          name="nome"
+          rules={{ required: "Nome é obrigatório" }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              placeholder="Digite o nome"
+              keyboardType="ascii-capable"
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+            />
+          )}
         />
+
+        {errors.nome && (
+          <Text style={{ color: "red" }}>{errors.nome.message as string}</Text>
+        )}
 
         <Title className="text-xl text-neutral-800">Descrição</Title>
 
-        <Input
-          value={description}
-          onChangeText={setDescription}
-          inputRef={descriptionInputRef}
-          placeholder="Digite a descrição"
-          multiline
-          numberOfLines={6}
-          className="h-[10rem]"
-          onBlur={() => Keyboard.dismiss()}
-          textAlignVertical="top"
+        <Controller
+          control={control}
+          name="description"
+          rules={{ required: "Descrição é obrigatório" }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Input
+              value={value}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              placeholder="Digite a descrição"
+              multiline
+              numberOfLines={6}
+              className="h-[10rem]"
+              textAlignVertical="top"
+            />
+          )}
         />
+
+        {errors.description && (
+          <Text style={{ color: "red" }}>
+            {errors.description.message as string}
+          </Text>
+        )}
 
         <Title className="text-xl text-neutral-800">Data</Title>
 
-        <DateInput
-          mode="date"
-          data={date?.toLocaleDateString("pt-BR")}
-          showDatePicker={showDatePicker}
-          isDatePickerVisible={isDatePickerVisible}
-          onConfirm={handleConfirmDate}
-          onCancel={hideDatePicker}
+        <Controller
+          control={control}
+          name="data"
+          rules={{ required: true }}
+          render={({ field: { onChange, value } }) => (
+            <DateInput mode="date" value={value} onChange={onChange} />
+          )}
         />
 
         <Title className="text-xl text-neutral-800">Hora</Title>
 
-        <DateInput
-          isVisible={isTimePickerVisible}
-          mode="time"
-          locale="pt-BR"
-          is24Hour={true}
-          onConfirm={handleConfirmTimer}
-          onCancel={hideTimePicker}
-          showDatePicker={showTimePicker}
-          data={selectedTime}
+        <Controller
+          control={control}
+          name="timer"
+          rules={{ required: true }}
+          render={({ field: { onChange, value } }) => (
+            <TimeInput
+              value={value.toLocaleTimeString("pt-BR", {
+                hour: "2-digit",
+                minute: "2-digit",
+              })}
+              onChange={onChange}
+            />
+          )}
         />
+
+        <Button onPress={handleSubmit(onSubmit)} className="bg-neutral-800">
+          <Text className="text-neutral-full font-nunitoBold text-lg">
+            Cadastrar refeição
+          </Text>
+        </Button>
       </View>
     </>
   );

@@ -1,18 +1,16 @@
+import { useState } from "react";
 import { Text, Pressable, StyleSheet } from "react-native";
-import DateTimePickerModal, {
-  DateTimePickerProps,
-} from "react-native-modal-datetime-picker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { colors } from "@theme/index";
-import { useState } from "react";
 
-type DateInputProps = {
-  value?: Date;
+export function TimeInput({
+  value,
+  onChange,
+}: {
+  value: string;
   onChange: (date: Date) => void;
-  mode: "date" | "time";
-};
-
-export function DateInput({ value, onChange, mode }: DateInputProps) {
+}) {
   const [showPicker, setShowPicker] = useState(false);
 
   const show = () => setShowPicker(true);
@@ -26,14 +24,15 @@ export function DateInput({ value, onChange, mode }: DateInputProps) {
   return (
     <>
       <Pressable style={styles.input} onPress={show}>
-        <Text>{value?.toLocaleDateString("pt-BR")}</Text>
+        <Text>{value}</Text>
       </Pressable>
 
       <DateTimePickerModal
         isVisible={showPicker}
-        mode={mode}
+        mode="time"
         onConfirm={handleConfirm}
         onCancel={hide}
+        is24Hour={true}
         locale="pt-BR"
       />
     </>
