@@ -19,6 +19,7 @@ import { Topic } from "@components/Topic";
 import { TopBanner } from "@components/TopBanner";
 import { Title } from "@components/Title";
 import { Card } from "@components/Card";
+import { Input } from "@components/Input";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -63,7 +64,17 @@ export default function App() {
           </Text>
         </Button>
 
-        <Topic isDiet />
+        <Topic.Wrapper>
+          <Topic.Content>
+            <Topic.Title>20:00</Topic.Title>
+
+            <Topic.Separator />
+
+            <Topic.Description>X-tudo</Topic.Description>
+          </Topic.Content>
+
+          <Topic.Error />
+        </Topic.Wrapper>
 
         <Title content="12.08.22" />
 
@@ -71,6 +82,8 @@ export default function App() {
           <Card.Title>22</Card.Title>
           <Card.Text>melhor sequência de pratos dentro da dieta</Card.Text>
         </Card.Error>
+
+        <Input placeholder="Digite o seu nome" keyboardType="ascii-capable" />
       </View>
     </>
   );
