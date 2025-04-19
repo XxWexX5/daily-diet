@@ -32,6 +32,7 @@ import { Input } from "@components/Input";
 import { DateInput } from "@components/DateInput";
 import { TimeInput } from "@components/TimeInput";
 import { RadioButton } from "@components/RadioButton";
+import { Feedback } from "@components/Feedback";
 
 const getCurrentTime = () => {
   const now = new Date();
@@ -77,7 +78,7 @@ export default function App() {
 
   return (
     <>
-      <SafeAreaView className="bg-success-600" />
+      {/* <SafeAreaView className="bg-success-600" />
 
       <StatusBar
         barStyle="dark-content"
@@ -88,7 +89,7 @@ export default function App() {
       <TopBanner />
 
       <View className="bg-neutral-full min-h-screen pt-6 px-8">
-        {/* <Header />
+        <Header />
 
         <Hero />
 
@@ -112,12 +113,12 @@ export default function App() {
           <Topic.Error />
         </Topic.Wrapper>
 
-        <Title content="12.08.22" />
+        <Title>12.08.22</Title>
 
         <Card.Error>
           <Card.Title>22</Card.Title>
           <Card.Text>melhor sequência de pratos dentro da dieta</Card.Text>
-        </Card.Error>*/}
+        </Card.Error>
 
         <Title className="text-xl text-neutral-800">Nome</Title>
 
@@ -225,7 +226,9 @@ export default function App() {
             Cadastrar refeição
           </Text>
         </Button>
-      </View>
+      </View> */}
+
+      <Feedback.Negative />
     </>
   );
 }
