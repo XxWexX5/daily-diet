@@ -31,6 +31,12 @@ import { Card } from "@components/Card";
 import { Input } from "@components/Input";
 import { DateInput } from "@components/DateInput";
 import { TimeInput } from "@components/TimeInput";
+import { RadioButton } from "@components/RadioButton";
+
+const getCurrentTime = () => {
+  const now = new Date();
+  return now;
+};
 
 export default function App() {
   const {
@@ -38,17 +44,15 @@ export default function App() {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm();
-
-  const getCurrentTime = () => {
-    const now = new Date();
-    return now;
-  };
-
-  useEffect(() => {
-    setValue("data", new Date());
-    setValue("timer", getCurrentTime());
-  }, []);
+  } = useForm({
+    defaultValues: {
+      name: "",
+      description: "",
+      data: new Date(),
+      timer: getCurrentTime(),
+      isOnTheDiet: "",
+    },
+  });
 
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
@@ -119,21 +123,21 @@ export default function App() {
 
         <Controller
           control={control}
-          name="nome"
+          name="name"
           rules={{ required: "Nome é obrigatório" }}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, value } }) => (
             <Input
               placeholder="Digite o nome"
               keyboardType="ascii-capable"
               value={value}
               onChangeText={onChange}
-              onBlur={onBlur}
+              onBlur={() => Keyboard.dismiss()}
             />
           )}
         />
 
-        {errors.nome && (
-          <Text style={{ color: "red" }}>{errors.nome.message as string}</Text>
+        {errors.name && (
+          <Text style={{ color: "red" }}>{errors.name.message as string}</Text>
         )}
 
         <Title className="text-xl text-neutral-800">Descrição</Title>
@@ -142,11 +146,11 @@ export default function App() {
           control={control}
           name="description"
           rules={{ required: "Descrição é obrigatório" }}
-          render={({ field: { onChange, onBlur, value } }) => (
+          render={({ field: { onChange, value } }) => (
             <Input
               value={value}
               onChangeText={onChange}
-              onBlur={onBlur}
+              onBlur={() => Keyboard.dismiss()}
               placeholder="Digite a descrição"
               multiline
               numberOfLines={6}
@@ -187,6 +191,32 @@ export default function App() {
               })}
               onChange={onChange}
             />
+          )}
+        />
+
+        <Title className="text-xl text-neutral-800">
+          Está dentro da dieta?
+        </Title>
+
+        <Controller
+          control={control}
+          name="isOnTheDiet"
+          render={({ field: { onChange, value } }) => (
+            <View className="flex-row gap-4">
+              <RadioButton.Success
+                label="Sim"
+                value="yes"
+                selected={value === "yes"}
+                onSelect={onChange}
+              />
+
+              <RadioButton.Error
+                label="Não"
+                value="no"
+                selected={value === "no"}
+                onSelect={onChange}
+              />
+            </View>
           )}
         />
 
