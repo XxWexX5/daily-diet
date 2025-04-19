@@ -7,7 +7,7 @@ interface ButtonProps extends TouchableOpacityProps {
 export function Button({ className, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity
-      className={`flex-row items-center justify-center py-6 rounded-default gap-4 ${className}`}
+      className={`flex-row items-center justify-center py-6 px-8 rounded-default gap-4 ${className}`}
       {...rest}
     ></TouchableOpacity>
   );

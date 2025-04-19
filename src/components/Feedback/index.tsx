@@ -2,6 +2,15 @@ import { Button } from "@components/Button";
 import { Title } from "@components/Title";
 import { Image, Text, View } from "react-native";
 
+function ButtonDefault() {
+  return (
+    <Button className="bg-neutral-800">
+      <Text className="text-neutral-full font-nunitoBold text-lg">
+        Ir para a página inicial
+      </Text>
+    </Button>
+  );
+}
 function Positive() {
   return (
     <View className="flex-1 gap-8 items-center justify-center bg-neutral-full px-6">
@@ -22,11 +31,7 @@ function Positive() {
         />
       </View>
 
-      <Button className="bg-neutral-800 px-8">
-        <Text className="text-neutral-full font-nunitoBold text-lg">
-          Ir para a página inicial
-        </Text>
-      </Button>
+      <ButtonDefault />
     </View>
   );
 }
@@ -51,11 +56,7 @@ function Negative() {
         />
       </View>
 
-      <Button className="bg-neutral-800 px-8">
-        <Text className="text-neutral-full font-nunitoBold text-lg">
-          Ir para a página inicial
-        </Text>
-      </Button>
+      <ButtonDefault />
     </View>
   );
 }

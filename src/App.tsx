@@ -33,6 +33,7 @@ import { DateInput } from "@components/DateInput";
 import { TimeInput } from "@components/TimeInput";
 import { RadioButton } from "@components/RadioButton";
 import { Feedback } from "@components/Feedback";
+import { GroupButton } from "@components/GroupButton";
 
 const getCurrentTime = () => {
   const now = new Date();
@@ -226,9 +227,46 @@ export default function App() {
             Cadastrar refeição
           </Text>
         </Button>
-      </View> */}
-
+      </View> 
+      
       <Feedback.Negative />
+      
+      <View className="flex-1 justify-center bg-neutral-full px-10">
+        <GroupButton.Vertical>
+          <Button className="border border-neutral-800 bg-neutral-800">
+            <Icon.PencilSimpleLine size={24} color={colors.neutral.full} />
+
+            <Text className="text-neutral-full font-nunitoBold text-lg">
+              Editar refeição
+            </Text>
+          </Button>
+
+          <Button className="border border-neutral-900">
+            <Icon.Trash size={24} color={colors.neutral[900]} />
+
+            <Text className="text-neutral-900 font-nunitoBold text-lg">
+              Excluir refeição
+            </Text>
+          </Button>
+        </GroupButton.Vertical>
+      </View>
+      */}
+
+      <View className="flex-1 w-full justify-center bg-neutral-full px-10">
+        <GroupButton.Horizontal>
+          <Button className="flex-1 border border-neutral-900">
+            <Text className="text-neutral-900 font-nunitoBold text-lg">
+              Cancelar
+            </Text>
+          </Button>
+
+          <Button className="flex-1 border border-neutral-800 bg-neutral-800">
+            <Text className="text-neutral-full font-nunitoBold text-lg">
+              Sim, excluir
+            </Text>
+          </Button>
+        </GroupButton.Horizontal>
+      </View>
     </>
   );
 }
