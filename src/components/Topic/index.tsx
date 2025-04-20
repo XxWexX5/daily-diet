@@ -18,7 +18,12 @@ function Separator() {
 
 function Description({ children, ...rest }: TextProps) {
   return (
-    <Text className="font-nunito text-lg" {...rest}>
+    <Text
+      className="font-nunito text-lg max-w-[13rem]"
+      numberOfLines={1}
+      ellipsizeMode="tail"
+      {...rest}
+    >
       {children}
     </Text>
   );

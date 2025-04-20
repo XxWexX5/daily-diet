@@ -83,7 +83,7 @@ export default function App() {
 
   return (
     <>
-      {/* <SafeAreaView className="bg-success-600" />
+      <SafeAreaView className="bg-neutral-full" />
 
       <StatusBar
         barStyle="dark-content"
@@ -91,33 +91,144 @@ export default function App() {
         translucent
       />
 
-      <TopBanner />
-
-      <View className="bg-neutral-full min-h-screen pt-6 px-8">
+      <View className="bg-neutral-full min-h-screen gap-10 pt-6 px-8">
         <Header />
 
         <Hero />
 
-        <Button className="bg-neutral-800">
-          <Icon.Plus size={24} color={colors.neutral.full} />
+        <View className="gap-2">
+          <Topic.Title className="font-nunitoLight text-xl">
+            Refeições
+          </Topic.Title>
 
-          <Text className="text-neutral-full font-nunitoBold text-lg">
-            Nova refeição
-          </Text>
-        </Button>
+          <Button className="bg-neutral-800">
+            <Icon.Plus size={24} color={colors.neutral.full} />
 
-        <Topic.Wrapper>
-          <Topic.Content>
-            <Topic.Title>20:00</Topic.Title>
+            <Text className="text-neutral-full font-nunitoBold text-lg">
+              Nova refeição
+            </Text>
+          </Button>
+        </View>
 
-            <Topic.Separator />
+        <View className="gap-2">
+          <Title className="text-2xl">12.08.22</Title>
 
-            <Topic.Description>X-tudo</Topic.Description>
-          </Topic.Content>
+          <View className="gap-4">
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>20:00</Topic.Title>
 
-          <Topic.Error />
-        </Topic.Wrapper>
+                <Topic.Separator />
 
+                <Topic.Description>X-tudo</Topic.Description>
+              </Topic.Content>
+
+              <Topic.Error />
+            </Topic.Wrapper>
+
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>16:00</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>Whey protein com leite</Topic.Description>
+              </Topic.Content>
+
+              <Topic.Success />
+            </Topic.Wrapper>
+
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>12:30</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>
+                  Salada cesar com frango grelhado
+                </Topic.Description>
+              </Topic.Content>
+
+              <Topic.Success />
+            </Topic.Wrapper>
+
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>09:30</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>
+                  Vitamina de banana com abacate
+                </Topic.Description>
+              </Topic.Content>
+
+              <Topic.Success />
+            </Topic.Wrapper>
+          </View>
+
+          <Title className="text-2xl">11.08.22</Title>
+
+          <View className="gap-4">
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>20:00</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>X-tudo</Topic.Description>
+              </Topic.Content>
+
+              <Topic.Error />
+            </Topic.Wrapper>
+
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>16:00</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>Whey protein com leite</Topic.Description>
+              </Topic.Content>
+
+              <Topic.Success />
+            </Topic.Wrapper>
+
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>12:30</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>
+                  Salada cesar com frango grelhado
+                </Topic.Description>
+              </Topic.Content>
+
+              <Topic.Success />
+            </Topic.Wrapper>
+
+            <Topic.Wrapper>
+              <Topic.Content>
+                <Topic.Title>09:30</Topic.Title>
+
+                <Topic.Separator />
+
+                <Topic.Description>
+                  Vitamina de banana com abacate
+                </Topic.Description>
+              </Topic.Content>
+
+              <Topic.Success />
+            </Topic.Wrapper>
+          </View>
+        </View>
+      </View>
+
+      {/* 
+      <TopBanner />
+      
+      <View className="bg-neutral-full min-h-screen pt-6 px-8">
         <Title>12.08.22</Title>
 
         <Card.Error>
@@ -274,7 +385,6 @@ export default function App() {
       <View className="flex-1 justify-center bg-neutral-full px-10">
         <Pill.Negative />
       </View>
-      */}
 
       <View className="flex-1 w-full justify-center bg-neutral-full px-10">
         <Button
@@ -318,6 +428,7 @@ export default function App() {
           </View>
         </Modal>
       </View>
+      */}
     </>
   );
 }
