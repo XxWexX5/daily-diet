@@ -19,6 +19,8 @@ import * as Icon from "phosphor-react-native";
 
 import { useForm, Controller } from "react-hook-form";
 
+import Modal from "react-native-modal";
+
 import { Loader } from "@components/Loader";
 import { Header } from "@components/Header";
 import { Hero } from "@components/Hero";
@@ -42,6 +44,8 @@ const getCurrentTime = () => {
 };
 
 export default function App() {
+  const [isModalVisible, setModalVisible] = useState(false);
+
   const {
     setValue,
     control,
@@ -66,6 +70,10 @@ export default function App() {
 
   function onSubmit(data: any) {
     console.log("Form data", data);
+  }
+
+  function toggleModal() {
+    setModalVisible(!isModalVisible);
   }
 
   useEffect(() => {
@@ -267,9 +275,44 @@ export default function App() {
           </Button>
         </GroupButton.Horizontal>
       </View>
-      */}
+
       <View className="flex-1 justify-center bg-neutral-full px-10">
         <Pill.Negative />
+      </View>
+      */}
+
+      <View className="flex-1 w-full justify-center ">
+        <Button onPress={toggleModal}>
+          <Text className="text-white">Abrir modal</Text>
+        </Button>
+
+        <Modal isVisible={isModalVisible}>
+          <View className="gap-8 w-full justify-center bg-neutral-100 py-8 px-10 rounded-default">
+            <Title className="text-center">
+              Deseja realmente excluir o registro da refeição?
+            </Title>
+
+            <GroupButton.Horizontal>
+              <Button
+                onPress={toggleModal}
+                className="border border-neutral-900"
+              >
+                <Text className="text-neutral-900 font-nunitoBold text-lg">
+                  Cancelar
+                </Text>
+              </Button>
+
+              <Button
+                onPress={toggleModal}
+                className="border border-neutral-800 bg-neutral-800"
+              >
+                <Text className="text-neutral-full font-nunitoBold text-lg">
+                  Sim, excluir
+                </Text>
+              </Button>
+            </GroupButton.Horizontal>
+          </View>
+        </Modal>
       </View>
     </>
   );
