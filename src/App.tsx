@@ -4,6 +4,7 @@ import { useFonts } from "expo-font";
 
 import {
   Keyboard,
+  Modal,
   SafeAreaView,
   StatusBar,
   Text,
@@ -18,8 +19,6 @@ import * as SplashScreen from "expo-splash-screen";
 import * as Icon from "phosphor-react-native";
 
 import { useForm, Controller } from "react-hook-form";
-
-import Modal from "react-native-modal";
 
 import { Loader } from "@components/Loader";
 import { Header } from "@components/Header";
@@ -44,7 +43,7 @@ const getCurrentTime = () => {
 };
 
 export default function App() {
-  const [isModalVisible, setModalVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const {
     setValue,
@@ -70,10 +69,6 @@ export default function App() {
 
   function onSubmit(data: any) {
     console.log("Form data", data);
-  }
-
-  function toggleModal() {
-    setModalVisible(!isModalVisible);
   }
 
   useEffect(() => {
@@ -281,36 +276,45 @@ export default function App() {
       </View>
       */}
 
-      <View className="flex-1 w-full justify-center ">
-        <Button onPress={toggleModal}>
-          <Text className="text-white">Abrir modal</Text>
+      <View className="flex-1 w-full justify-center bg-neutral-full px-10">
+        <Button
+          className="border border-neutral-800 bg-neutral-800"
+          onPress={() => setVisible(true)}
+        >
+          <Title className="text-neutral-full">Abrir modal</Title>
         </Button>
 
-        <Modal isVisible={isModalVisible}>
-          <View className="gap-8 w-full justify-center bg-neutral-100 py-8 px-10 rounded-default">
-            <Title className="text-center">
-              Deseja realmente excluir o registro da refeição?
-            </Title>
+        <Modal
+          transparent={true}
+          visible={visible}
+          onRequestClose={() => setVisible(false)}
+        >
+          <View className="flex-1 justify-center items-center p-5 bg-black/50">
+            <View className="p-8 bg-neutral-full rounded-default gap-y-8">
+              <Title className="text-center">
+                Deseja realmente excluir o registro da refeição?
+              </Title>
 
-            <GroupButton.Horizontal>
-              <Button
-                onPress={toggleModal}
-                className="border border-neutral-900"
-              >
-                <Text className="text-neutral-900 font-nunitoBold text-lg">
-                  Cancelar
-                </Text>
-              </Button>
+              <GroupButton.Horizontal>
+                <Button
+                  onPress={() => setVisible(false)}
+                  className="border border-neutral-900"
+                >
+                  <Text className="text-neutral-900 font-nunitoBold text-lg">
+                    Cancelar
+                  </Text>
+                </Button>
 
-              <Button
-                onPress={toggleModal}
-                className="border border-neutral-800 bg-neutral-800"
-              >
-                <Text className="text-neutral-full font-nunitoBold text-lg">
-                  Sim, excluir
-                </Text>
-              </Button>
-            </GroupButton.Horizontal>
+                <Button
+                  onPress={() => setVisible(false)}
+                  className="border border-neutral-800 bg-neutral-800"
+                >
+                  <Text className="text-neutral-full font-nunitoBold text-lg">
+                    Sim, excluir
+                  </Text>
+                </Button>
+              </GroupButton.Horizontal>
+            </View>
           </View>
         </Modal>
       </View>
