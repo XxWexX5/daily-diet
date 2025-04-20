@@ -34,6 +34,7 @@ import { TimeInput } from "@components/TimeInput";
 import { RadioButton } from "@components/RadioButton";
 import { Feedback } from "@components/Feedback";
 import { GroupButton } from "@components/GroupButton";
+import { Pill } from "@components/Pill";
 
 const getCurrentTime = () => {
   const now = new Date();
@@ -250,7 +251,6 @@ export default function App() {
           </Button>
         </GroupButton.Vertical>
       </View>
-      */}
 
       <View className="flex-1 w-full justify-center bg-neutral-full px-10">
         <GroupButton.Horizontal>
@@ -266,6 +266,10 @@ export default function App() {
             </Text>
           </Button>
         </GroupButton.Horizontal>
+      </View>
+      */}
+      <View className="flex-1 justify-center bg-neutral-full px-10">
+        <Pill.Negative />
       </View>
     </>
   );
