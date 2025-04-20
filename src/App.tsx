@@ -43,7 +43,7 @@ const getCurrentTime = () => {
 };
 
 export default function App() {
-  const [visible, setVisible] = useState(false);
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
 
   const {
     setValue,
@@ -279,15 +279,15 @@ export default function App() {
       <View className="flex-1 w-full justify-center bg-neutral-full px-10">
         <Button
           className="border border-neutral-800 bg-neutral-800"
-          onPress={() => setVisible(true)}
+          onPress={() => setIsVisibleModal(true)}
         >
           <Title className="text-neutral-full">Abrir modal</Title>
         </Button>
 
         <Modal
           transparent={true}
-          visible={visible}
-          onRequestClose={() => setVisible(false)}
+          visible={isVisibleModal}
+          onRequestClose={() => setIsVisibleModal(false)}
         >
           <View className="flex-1 justify-center items-center p-5 bg-black/50">
             <View className="p-8 bg-neutral-full rounded-default gap-y-8">
@@ -297,7 +297,7 @@ export default function App() {
 
               <GroupButton.Horizontal>
                 <Button
-                  onPress={() => setVisible(false)}
+                  onPress={() => setIsVisibleModal(false)}
                   className="border border-neutral-900"
                 >
                   <Text className="text-neutral-900 font-nunitoBold text-lg">
@@ -306,7 +306,7 @@ export default function App() {
                 </Button>
 
                 <Button
-                  onPress={() => setVisible(false)}
+                  onPress={() => setIsVisibleModal(false)}
                   className="border border-neutral-800 bg-neutral-800"
                 >
                   <Text className="text-neutral-full font-nunitoBold text-lg">
