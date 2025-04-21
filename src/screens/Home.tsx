@@ -40,7 +40,10 @@ export function Home() {
             Refeições
           </Topic.Title>
 
-          <Button className="bg-neutral-800">
+          <Button
+            onPress={() => navigate.navigate("create")}
+            className="bg-neutral-800"
+          >
             <Icon.Plus size={24} color={colors.neutral.full} />
 
             <Text className="text-neutral-full font-nunitoBold text-lg">

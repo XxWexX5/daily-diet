@@ -10,7 +10,7 @@ export function Input({ inputRef, className, ...rest }: InputProps) {
     <TextInput
       ref={inputRef}
       className={twMerge(
-        `border border-neutral-300 p-5 rounded-default text-neutral-900 font-nunitoLight text-lg ${className}`
+        `border border-neutral-300 px-6 h-16 align-middle rounded-default text-neutral-900 font-nunitoLight text-lg ${className}`
       )}
       {...rest}
     />

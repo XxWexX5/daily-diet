@@ -3,6 +3,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Home } from "@screens/Home";
 import { Statistic } from "@screens/Statistic";
 import { Meal } from "@screens/Meal";
+import { Create } from "@screens/Create";
+import { Edit } from "@screens/Edit";
 
 export type RootStackParamList = {
   home: undefined;
@@ -12,16 +14,20 @@ export type RootStackParamList = {
   meal: {
     isOnDiet: boolean;
   };
+  create: undefined;
+  edit: undefined;
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 export function AppRoutes() {
   return (
-    <Navigator screenOptions={{ headerShown: false }} initialRouteName="home">
+    <Navigator screenOptions={{ headerShown: false }} initialRouteName="edit">
       <Screen name="home" component={Home} />
       <Screen name="statistic" component={Statistic} />
       <Screen name="meal" component={Meal} />
+      <Screen name="create" component={Create} />
+      <Screen name="edit" component={Edit} />
     </Navigator>
   );
 }
