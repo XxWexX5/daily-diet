@@ -1,10 +1,10 @@
 import { Text, Pressable, StyleSheet } from "react-native";
-import DateTimePickerModal, {
-  DateTimePickerProps,
-} from "react-native-modal-datetime-picker";
+
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 import { colors } from "@theme/index";
 import { useState } from "react";
+import { Portal } from "react-native-portalize";
 
 type DateInputProps = {
   value?: Date;
@@ -29,13 +29,15 @@ export function DateInput({ value, onChange, mode }: DateInputProps) {
         <Text>{value?.toLocaleDateString("pt-BR")}</Text>
       </Pressable>
 
-      <DateTimePickerModal
-        isVisible={showPicker}
-        mode={mode}
-        onConfirm={handleConfirm}
-        onCancel={hide}
-        locale="pt-BR"
-      />
+      <Portal>
+        <DateTimePickerModal
+          isVisible={showPicker}
+          mode={mode}
+          onConfirm={handleConfirm}
+          onCancel={hide}
+          locale="pt-BR"
+        />
+      </Portal>
     </>
   );
 }
@@ -47,5 +49,6 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 12,
     color: colors.neutral[900],
+    zIndex: 100,
   },
 });

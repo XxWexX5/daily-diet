@@ -1,81 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect } from "react";
 
 import { useFonts } from "expo-font";
-
-import {
-  Keyboard,
-  Modal,
-  SafeAreaView,
-  StatusBar,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
 
 import "@styles/global.css";
 
 import * as SplashScreen from "expo-splash-screen";
 
-import * as Icon from "phosphor-react-native";
-
-import { useForm, Controller } from "react-hook-form";
-
 import { Loader } from "@components/Loader";
-import { Header } from "@components/Header";
-import { Hero } from "@components/Hero";
-import { Button } from "@components/Button";
-import { colors } from "./theme";
-import { Topic } from "@components/Topic";
-import { TopBanner } from "@components/TopBanner";
-import { Title } from "@components/Title";
-import { Card } from "@components/Card";
-import { Input } from "@components/Input";
-import { DateInput } from "@components/DateInput";
-import { TimeInput } from "@components/TimeInput";
-import { RadioButton } from "@components/RadioButton";
-import { Feedback } from "@components/Feedback";
-import { GroupButton } from "@components/GroupButton";
-import { Pill } from "@components/Pill";
-
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Routes from "./routes";
 
-const { Navigator, Screen } = createNativeStackNavigator();
-
-const getCurrentTime = () => {
-  const now = new Date();
-  return now;
-};
+import { Host } from "react-native-portalize";
 
 export default function App() {
-  const [isVisibleModal, setIsVisibleModal] = useState(false);
-
-  const {
-    setValue,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      name: "",
-      description: "",
-      data: new Date(),
-      timer: getCurrentTime(),
-      isOnDiet: "",
-    },
-  });
-
   const [loaded] = useFonts({
     Nunito: require("./assets/fonts/NunitoSans/NunitoSans.ttf"),
     NunitoItalic: require("./assets/fonts/NunitoSans/NunitoSans-Italic.ttf"),
     NunitoBold: require("./assets/fonts/NunitoSans/NunitoSans-Bold.ttf"),
     NunitoLight: require("./assets/fonts/NunitoSans/NunitoSans-Light.ttf"),
   });
-
-  function onSubmit(data: any) {
-    console.log("Form data", data);
-  }
 
   useEffect(() => {
     if (loaded) {
@@ -88,104 +31,8 @@ export default function App() {
   }
 
   return (
-    <>
+    <Host>
       <Routes />
-
-      {/* 
-      <View className="bg-neutral-full min-h-screen pt-6 px-8">
-        <Title>12.08.22</Title>
-
-        <Card.Error>
-          <Card.Title>22</Card.Title>
-          <Card.Text>melhor sequência de pratos dentro da dieta</Card.Text>
-        </Card.Error>
-      </View> 
-      
-      <Feedback.Negative />
-      
-      <View className="flex-1 justify-center bg-neutral-full px-10">
-        <GroupButton.Vertical>
-          <Button className="border border-neutral-800 bg-neutral-800">
-            <Icon.PencilSimpleLine size={24} color={colors.neutral.full} />
-
-            <Text className="text-neutral-full font-nunitoBold text-lg">
-              Editar refeição
-            </Text>
-          </Button>
-
-          <Button className="border border-neutral-900">
-            <Icon.Trash size={24} color={colors.neutral[900]} />
-
-            <Text className="text-neutral-900 font-nunitoBold text-lg">
-              Excluir refeição
-            </Text>
-          </Button>
-        </GroupButton.Vertical>
-      </View>
-
-      <View className="flex-1 w-full justify-center bg-neutral-full px-10">
-        <GroupButton.Horizontal>
-          <Button className="flex-1 border border-neutral-900">
-            <Text className="text-neutral-900 font-nunitoBold text-lg">
-              Cancelar
-            </Text>
-          </Button>
-
-          <Button className="flex-1 border border-neutral-800 bg-neutral-800">
-            <Text className="text-neutral-full font-nunitoBold text-lg">
-              Sim, excluir
-            </Text>
-          </Button>
-        </GroupButton.Horizontal>
-      </View>
-
-      <View className="flex-1 justify-center bg-neutral-full px-10">
-        <Pill.Negative />
-      </View>
-
-      <View className="flex-1 w-full justify-center bg-neutral-full px-10">
-        <Button
-          className="border border-neutral-800 bg-neutral-800"
-          onPress={() => setIsVisibleModal(true)}
-        >
-          <Title className="text-neutral-full">Abrir modal</Title>
-        </Button>
-
-        <Modal
-          transparent={true}
-          visible={isVisibleModal}
-          onRequestClose={() => setIsVisibleModal(false)}
-        >
-          <View className="flex-1 justify-center items-center p-5 bg-black/50">
-            <View className="p-8 bg-neutral-full rounded-default gap-y-8">
-              <Title className="text-center">
-                Deseja realmente excluir o registro da refeição?
-              </Title>
-
-              <GroupButton.Horizontal>
-                <Button
-                  onPress={() => setIsVisibleModal(false)}
-                  className="border border-neutral-900"
-                >
-                  <Text className="text-neutral-900 font-nunitoBold text-lg">
-                    Cancelar
-                  </Text>
-                </Button>
-
-                <Button
-                  onPress={() => setIsVisibleModal(false)}
-                  className="border border-neutral-800 bg-neutral-800"
-                >
-                  <Text className="text-neutral-full font-nunitoBold text-lg">
-                    Sim, excluir
-                  </Text>
-                </Button>
-              </GroupButton.Horizontal>
-            </View>
-          </View>
-        </Modal>
-      </View>
-      */}
-    </>
+    </Host>
   );
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Text, Pressable, StyleSheet } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
+import { Portal } from "react-native-portalize";
+
 import { colors } from "@theme/index";
 
 export function TimeInput({
@@ -27,14 +29,16 @@ export function TimeInput({
         <Text>{value}</Text>
       </Pressable>
 
-      <DateTimePickerModal
-        isVisible={showPicker}
-        mode="time"
-        onConfirm={handleConfirm}
-        onCancel={hide}
-        is24Hour={true}
-        locale="pt-BR"
-      />
+      <Portal>
+        <DateTimePickerModal
+          isVisible={showPicker}
+          mode="time"
+          onConfirm={handleConfirm}
+          onCancel={hide}
+          is24Hour={true}
+          locale="pt-BR"
+        />
+      </Portal>
     </>
   );
 }

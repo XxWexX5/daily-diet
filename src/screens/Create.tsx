@@ -58,9 +58,7 @@ export function Create() {
   }
 
   return (
-    <>
-      <SafeAreaView className={"bg-neutral-300"} />
-
+    <SafeAreaView className="bg-neutral-300 flex-1">
       <StatusBar
         barStyle="dark-content"
         backgroundColor="transparent"
@@ -206,6 +204,6 @@ export function Create() {
           </Button>
         </View>
       </View>
-    </>
+    </SafeAreaView>
   );
 }
