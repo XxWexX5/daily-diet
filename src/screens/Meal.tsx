@@ -50,7 +50,7 @@ export function Meal() {
         } flex-row py-8 items-center`}
       >
         <TouchableOpacity
-          onPress={() => navigate.navigate("home")}
+          onPress={() => navigate.goBack()}
           className="absolute top-5 left-0 w-20 h-14 px-8 z-10"
         >
           <Icon.ArrowLeft
@@ -86,7 +86,10 @@ export function Meal() {
         </View>
 
         <GroupButton.Vertical>
-          <Button className="border border-neutral-800 bg-neutral-800">
+          <Button
+            onPress={() => navigate.navigate("edit")}
+            className="border border-neutral-800 bg-neutral-800"
+          >
             <Icon.PencilSimpleLine size={24} color={colors.neutral.full} />
 
             <Text className="text-neutral-full font-nunitoBold text-lg">

@@ -70,7 +70,7 @@ export function Edit() {
       <View className="bg-neutral-300 flex-1">
         <View className={`relative flex-row py-8 items-center`}>
           <TouchableOpacity
-            onPress={() => navigate.navigate("home")}
+            onPress={() => navigate.goBack()}
             className="absolute top-5 left-0 w-20 h-14 px-8 z-10"
           >
             <Icon.ArrowLeft color={colors.neutral[800]} size={32} />
