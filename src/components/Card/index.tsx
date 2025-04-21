@@ -6,11 +6,11 @@ function Title({ children }: { children: React.ReactNode }) {
 }
 
 function Text({ children }: { children: React.ReactNode }) {
-  return <Wrap.Content>{children}</Wrap.Content>;
+  return <Wrap.Content className="px-4 text-center">{children}</Wrap.Content>;
 }
 function Primary({ children }: { children: React.ReactNode }) {
   return (
-    <View className="bg-neutral-200 items-center py-12 rounded-default">
+    <View className="bg-neutral-200 items-center py-10 rounded-default">
       {children}
     </View>
   );
@@ -18,7 +18,7 @@ function Primary({ children }: { children: React.ReactNode }) {
 
 function Success({ children }: { children: React.ReactNode }) {
   return (
-    <View className="bg-success-500 items-center py-12 rounded-default">
+    <View className="flex-1 bg-success-500 items-center py-10 rounded-default">
       {children}
     </View>
   );
@@ -26,7 +26,7 @@ function Success({ children }: { children: React.ReactNode }) {
 
 function Error({ children }: { children: React.ReactNode }) {
   return (
-    <View className="bg-error-500 items-center py-12 rounded-default">
+    <View className="flex-1 bg-error-500 items-center py-10 rounded-default">
       {children}
     </View>
   );
