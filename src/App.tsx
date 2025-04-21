@@ -62,7 +62,7 @@ export default function App() {
       description: "",
       data: new Date(),
       timer: getCurrentTime(),
-      isOnTheDiet: "",
+      isOnDiet: "",
     },
   });
 
@@ -181,7 +181,7 @@ export default function App() {
 
         <Controller
           control={control}
-          name="isOnTheDiet"
+          name="isOnDiet"
           render={({ field: { onChange, value } }) => (
             <View className="flex-row gap-4">
               <RadioButton.Success

@@ -10,7 +10,16 @@ import * as Icon from "phosphor-react-native";
 
 import { colors } from "@theme/index";
 
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { RootStackParamList } from "@routes/app.routes";
+import { useNavigation } from "@react-navigation/native";
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
 export function Home() {
+  const navigate = useNavigation<NavigationProps>();
+
   return (
     <>
       <SafeAreaView className="bg-neutral-full" />
@@ -44,7 +53,13 @@ export function Home() {
           <Title className="text-2xl">12.08.22</Title>
 
           <View className="gap-4">
-            <Topic.Wrapper>
+            <Topic.Wrapper
+              onPress={() =>
+                navigate.navigate("meal", {
+                  isOnDiet: false,
+                })
+              }
+            >
               <Topic.Content>
                 <Topic.Title>20:00</Topic.Title>
 
@@ -56,7 +71,13 @@ export function Home() {
               <Topic.Error />
             </Topic.Wrapper>
 
-            <Topic.Wrapper>
+            <Topic.Wrapper
+              onPress={() =>
+                navigate.navigate("meal", {
+                  isOnDiet: true,
+                })
+              }
+            >
               <Topic.Content>
                 <Topic.Title>16:00</Topic.Title>
 

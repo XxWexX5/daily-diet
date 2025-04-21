@@ -10,7 +10,9 @@ type TitleProps = TextProps & {
 export function Title({ children, className, ...rest }: TitleProps) {
   return (
     <Text
-      className={twMerge(`font-nunitoBold text-2xl ${className}`)}
+      className={twMerge(
+        `font-nunitoBold text-neutral-900 text-2xl ${className}`
+      )}
       {...rest}
     >
       {children}

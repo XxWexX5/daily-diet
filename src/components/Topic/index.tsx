@@ -1,7 +1,8 @@
-import { Text, TextProps, View } from "react-native";
+import { Text, TextProps, TouchableOpacity, View } from "react-native";
 
 interface TopicProps {
   children: React.ReactNode;
+  onPress?: () => void;
 }
 
 function Title({ children, ...rest }: TextProps) {
@@ -40,11 +41,14 @@ function Success() {
 function Content({ children }: { children: React.ReactNode }) {
   return <View className="flex-row items-center gap-4">{children}</View>;
 }
-function Wrapper({ children }: TopicProps) {
+function Wrapper({ children, onPress }: TopicProps) {
   return (
-    <View className="flex-row items-center justify-between border border-neutral-300 p-5 rounded-default">
+    <TouchableOpacity
+      onPress={onPress}
+      className="flex-row items-center justify-between border border-neutral-300 p-5 rounded-default"
+    >
       {children}
-    </View>
+    </TouchableOpacity>
   );
 }
 
