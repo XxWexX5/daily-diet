@@ -14,20 +14,38 @@ import { RootStackParamList } from "@routes/app.routes";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
-export function Hero() {
+interface HeroProps {
+  result: number;
+}
+
+export function Hero({ result }: HeroProps) {
   const navigation = useNavigation<NavigationProps>();
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("statistic")}
-      className="relative bg-success-500 rounded-default p-12"
+      onPress={() =>
+        navigation.navigate("statistic", {
+          result,
+        })
+      }
+      className={`${
+        result >= 90 ? "bg-success-500" : "bg-error-500"
+      } relative rounded-default p-12`}
     >
       <View className="absolute top-2 right-2">
-        <Icon.ArrowUpRight color={colors.success[900]} size={32} />
+        <Icon.ArrowUpRight
+          color={result >= 90 ? colors.success[900] : colors.error[900]}
+          size={32}
+        />
       </View>
 
       <View className="justify-center items-center">
-        <Wrap.Title>90,86%</Wrap.Title>
+        <Wrap.Title>
+          {Number.isInteger(result)
+            ? result
+            : result.toFixed(1).replace(".", ",")}
+          %
+        </Wrap.Title>
 
         <Wrap.Content>das refeições dentro da dieta</Wrap.Content>
       </View>

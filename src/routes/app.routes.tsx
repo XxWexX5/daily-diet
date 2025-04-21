@@ -5,7 +5,9 @@ import { Statistic } from "@screens/Statistic";
 
 export type RootStackParamList = {
   home: undefined;
-  statistic: undefined;
+  statistic: {
+    result: number;
+  };
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();

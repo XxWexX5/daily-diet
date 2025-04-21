@@ -12,19 +12,35 @@ import { useNavigation } from "@react-navigation/native";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
-export function TopBanner() {
+interface TopBannerProps {
+  result: number;
+}
+
+export function TopBanner({ result }: TopBannerProps) {
   const navigate = useNavigation<NavigationProps>();
 
   return (
-    <View className="bg-success-600 py-14 items-center">
+    <View
+      className={`${
+        result >= 90 ? "bg-success-500" : "bg-error-500"
+      } py-14 items-center`}
+    >
       <TouchableOpacity
         onPress={() => navigate.navigate("home")}
         className="absolute top-2 left-6 w-20 h-14"
       >
-        <Icon.ArrowLeft color={colors.success[900]} size={32} />
+        <Icon.ArrowLeft
+          color={result >= 90 ? colors.success[900] : colors.error[900]}
+          size={32}
+        />
       </TouchableOpacity>
 
-      <Wrap.Title>90,86%</Wrap.Title>
+      <Wrap.Title>
+        {Number.isInteger(result)
+          ? result
+          : result.toFixed(1).replace(".", ",")}
+        %
+      </Wrap.Title>
       <Wrap.Content>das refeições dentro da dieta</Wrap.Content>
     </View>
   );

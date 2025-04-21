@@ -24,7 +24,7 @@ export function Home() {
       <View className="bg-neutral-full min-h-screen gap-10 pt-6 px-8">
         <Header />
 
-        <Hero />
+        <Hero result={80} />
 
         <View className="gap-2">
           <Topic.Title className="font-nunitoLight text-xl">
