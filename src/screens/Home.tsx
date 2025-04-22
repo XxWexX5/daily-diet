@@ -14,59 +14,62 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "@routes/app.routes";
 import { useNavigation } from "@react-navigation/native";
+import { mealsGetAll } from "@storage/Meal/mealGetAll";
+import { MealType } from "@storage/Meal/mealCreate";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
+import { formatDateToDDMMYY } from "@utils/formatDateToDDMMYY";
+import { formatToHourMinute } from "@utils/formatToHourMinute";
+import { useEffect, useState } from "react";
+
 export function Home() {
+  const [meals, setMeals] = useState<MealType[]>([]);
   const navigate = useNavigation<NavigationProps>();
 
-  const DATA = [
-    {
-      title: "12.08.22",
-      data: [
-        {
-          time: "20:00",
-          item: "X-tudo",
-          status: "error",
-        },
-        {
-          time: "16:00",
-          item: "Sanduíche",
-          status: "success",
-        },
-        {
-          time: "12:30",
-          item: "Lasanha de frango com queijo",
-          status: "error",
-        },
-      ],
-    },
-    {
-      title: "11.08.22",
-      data: [
-        {
-          time: "20:00",
-          item: "X-tudo",
-          status: "error",
-        },
-        {
-          time: "16:00",
-          item: "Whey protein com leite",
-          status: "success",
-        },
-        {
-          time: "12:30",
-          item: "Salada cesar com frango grelhado",
-          status: "success",
-        },
-        {
-          time: "09:30",
-          item: "Vitamina de banana com abacate",
-          status: "success",
-        },
-      ],
-    },
-  ];
+  function transformMeals(meals: MealType[]) {
+    const grouped: {
+      [date: string]: { time: string; item: string; status: string }[];
+    } = {};
+
+    for (const meal of meals) {
+      const dateKey = formatDateToDDMMYY(new Date(meal.data));
+      const timeFormatted = formatToHourMinute(new Date(meal.time));
+
+      const item = {
+        time: timeFormatted,
+        item: meal.name.trim(),
+        status: Number(meal.isOnDiet) ? "success" : "error",
+      };
+
+      if (!grouped[dateKey]) {
+        grouped[dateKey] = [];
+      }
+
+      grouped[dateKey].push(item);
+    }
+
+    return Object.entries(grouped).map(([title, data]) => ({
+      title,
+      data,
+    }));
+  }
+
+  useEffect(() => {
+    async function dataMealsGetAll() {
+      try {
+        const response = await mealsGetAll();
+
+        setMeals(response);
+      } catch (error) {
+        console.log("Error");
+      }
+    }
+
+    dataMealsGetAll();
+  }, []);
+
+  const data = transformMeals(meals);
 
   return (
     <>
@@ -102,7 +105,7 @@ export function Home() {
 
         <View className="gap-2 h-[24rem]">
           <SectionList
-            sections={DATA}
+            sections={data}
             scrollEnabled={true}
             keyExtractor={(item, index) => item.item + index}
             ItemSeparatorComponent={() => <View className="h-3"></View>}
