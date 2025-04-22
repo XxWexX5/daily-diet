@@ -32,7 +32,11 @@ export function Home() {
       [date: string]: { time: string; item: string; status: string }[];
     } = {};
 
-    for (const meal of meals) {
+    const sortedMeals = [...meals].sort(
+      (a, b) => new Date(b.time).getTime() - new Date(a.time).getTime()
+    );
+
+    for (const meal of sortedMeals) {
       const dateKey = formatDateToDDMMYY(new Date(meal.data));
       const timeFormatted = formatToHourMinute(new Date(meal.time));
 
@@ -71,6 +75,10 @@ export function Home() {
 
   const data = transformMeals(meals);
 
+  const countMealsOnDiet = meals.filter((meal) => Number(meal.isOnDiet)).length;
+
+  const resultPercentageOnDiet = (countMealsOnDiet / meals.length) * 100;
+
   return (
     <>
       <SafeAreaView className="bg-neutral-full" />
@@ -84,7 +92,7 @@ export function Home() {
       <View className="bg-neutral-full min-h-screen gap-10 pt-6 px-8">
         <Header />
 
-        <Hero result={80} />
+        <Hero result={resultPercentageOnDiet} />
 
         <View className="gap-2">
           <Topic.Title className="font-nunitoLight text-xl">

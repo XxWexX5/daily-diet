@@ -144,10 +144,6 @@ export function Create() {
                     onChangeText={onChange}
                     onBlur={() => Keyboard.dismiss()}
                     placeholder="Digite a descrição"
-                    multiline
-                    numberOfLines={3}
-                    className="h-[6rem]"
-                    textAlignVertical="top"
                   />
                 )}
               />
