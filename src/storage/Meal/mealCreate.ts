@@ -5,8 +5,9 @@ import { MEAL_COLLECTION } from '../storageConfig';
 import { mealsGetAll } from './mealGetAll';
 
 export type MealType = {
+    id: string;
     name: string;
-    description: string
+    description: string;
     data: Date;
     time: Date;
     isOnDiet: string;
@@ -14,15 +15,9 @@ export type MealType = {
 
 export async function mealCreate(newMeal: MealType) {
     try{
-        const generateId = () => {
-            const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-            
-            return id;
-        };
-
         const storedMeals = await mealsGetAll();
 
-        const storage = JSON.stringify([...storedMeals, {id: generateId(), ...newMeal}]);
+        const storage = JSON.stringify([...storedMeals, {...newMeal}]);
 
         await AsyncStorage.setItem(MEAL_COLLECTION, storage);
 

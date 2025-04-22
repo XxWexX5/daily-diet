@@ -24,6 +24,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@routes/app.routes";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
+import { mealDelete } from "@storage/Meal/mealDelete";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
@@ -34,13 +35,22 @@ export function Meal() {
 
   const route = useRoute();
 
-  const { isOnDiet, data, time, item, description } = route.params as {
+  const { id, isOnDiet, data, time, item, description } = route.params as {
+    id: string;
     isOnDiet: boolean;
     data: string;
     time: string;
     item: string;
     description: string;
   };
+
+  async function handleConfirmDelete() {
+    setVisible(false);
+
+    await mealDelete(id);
+
+    navigate.navigate("home");
+  }
 
   return (
     <>
@@ -76,7 +86,7 @@ export function Meal() {
               </Button>
 
               <Button
-                onPress={() => setVisible(false)}
+                onPress={() => handleConfirmDelete()}
                 className="border border-neutral-800 bg-neutral-800"
               >
                 <Text className="text-neutral-full font-nunitoBold text-lg">

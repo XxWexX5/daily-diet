@@ -30,6 +30,7 @@ export function Home() {
   function transformMeals(meals: MealType[]) {
     const grouped: {
       [date: string]: {
+        id: string;
         data: string;
         time: string;
         item: string;
@@ -47,6 +48,7 @@ export function Home() {
       const timeFormatted = formatToHourMinute(new Date(meal.time));
 
       const item = {
+        id: meal.id,
         data: dateKey,
         time: timeFormatted,
         item: meal.name,
@@ -130,6 +132,7 @@ export function Home() {
               <Topic.Wrapper
                 onPress={() =>
                   navigate.navigate("meal", {
+                    id: item.id,
                     isOnDiet: item.status === "success",
                     data: item.data,
                     time: item.time,

@@ -50,6 +50,7 @@ export function Create() {
     formState: { errors },
   } = useForm({
     defaultValues: {
+      id: "",
       name: "",
       description: "",
       data: new Date(),
@@ -60,7 +61,14 @@ export function Create() {
 
   async function onSubmit(data: MealType) {
     if (data) {
+      const generateId = () => {
+        const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        return id;
+      };
+
       await mealCreate({
+        id: generateId(),
         name: data.name,
         description: data.description,
         data: data.data,
