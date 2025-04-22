@@ -141,7 +141,11 @@ export function Meal() {
 
         <GroupButton.Vertical>
           <Button
-            onPress={() => navigate.navigate("edit")}
+            onPress={() =>
+              navigate.navigate("edit", {
+                id: id,
+              })
+            }
             className="border border-neutral-800 bg-neutral-800"
           >
             <Icon.PencilSimpleLine size={24} color={colors.neutral.full} />

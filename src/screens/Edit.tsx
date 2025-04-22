@@ -26,36 +26,64 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@routes/app.routes";
 import { useNavigation } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { MealType } from "@storage/Meal/mealCreate";
+import { mealsGetAll } from "@storage/Meal/mealGetAll";
+import { mealEdit } from "@storage/Meal/mealEdit";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
-
-const getCurrentTime = () => {
-  const now = new Date();
-  return now;
-};
 
 export function Edit() {
   const navigate = useNavigation<NavigationProps>();
 
   const route = useRoute();
 
+  const { id } = route.params as {
+    id: string;
+  };
+
   const {
+    setValue,
     control,
     handleSubmit,
     formState: { errors },
   } = useForm({
     defaultValues: {
+      id: "",
       name: "",
       description: "",
       data: new Date(),
-      timer: getCurrentTime(),
+      time: new Date(),
       isOnDiet: "",
     },
   });
 
-  function onSubmit(data: any) {
-    console.log("Form data", data);
+  async function onSubmit(data: any) {
+    await mealEdit(data);
+
+    navigate.navigate("home");
   }
+
+  useEffect(() => {
+    async function dataMealsGetAll() {
+      try {
+        const response = await mealsGetAll();
+
+        const meal = response.filter((data: MealType) => data.id === id)[0];
+
+        setValue("id", meal.id);
+        setValue("description", meal.description);
+        setValue("isOnDiet", meal.isOnDiet);
+        setValue("name", meal.name);
+        setValue("data", new Date(meal.data));
+        setValue("time", new Date(meal.time));
+      } catch (error) {
+        console.log("Error");
+      }
+    }
+
+    dataMealsGetAll();
+  }, []);
 
   return (
     <>
@@ -80,7 +108,6 @@ export function Edit() {
             Editar refeição
           </Wrap.Title>
         </View>
-
         <View className="px-8 py-10 bg-neutral-full flex-1 rounded-3xl">
           <View className="flex-1 gap-y-6">
             <View className="gap-y-2">
@@ -121,10 +148,6 @@ export function Edit() {
                     onChangeText={onChange}
                     onBlur={() => Keyboard.dismiss()}
                     placeholder="Digite a descrição"
-                    multiline
-                    numberOfLines={3}
-                    className="h-[6rem]"
-                    textAlignVertical="top"
                   />
                 )}
               />
@@ -155,7 +178,7 @@ export function Edit() {
 
                 <Controller
                   control={control}
-                  name="timer"
+                  name="time"
                   rules={{ required: true }}
                   render={({ field: { onChange, value } }) => (
                     <TimeInput
@@ -178,24 +201,31 @@ export function Edit() {
               <Controller
                 control={control}
                 name="isOnDiet"
+                rules={{ required: "Está dentro da dieta é obrigatório" }}
                 render={({ field: { onChange, value } }) => (
                   <View className="flex-row gap-4">
                     <RadioButton.Success
                       label="Sim"
-                      value="yes"
-                      selected={value === "yes"}
+                      value="1"
+                      selected={value === "1"}
                       onSelect={onChange}
                     />
 
                     <RadioButton.Error
                       label="Não"
-                      value="no"
-                      selected={value === "no"}
+                      value="0"
+                      selected={value === "0"}
                       onSelect={onChange}
                     />
                   </View>
                 )}
               />
+
+              {errors.isOnDiet && (
+                <Text className="text-red-500 text-sm">
+                  {errors.isOnDiet.message as string}
+                </Text>
+              )}
             </View>
           </View>
 

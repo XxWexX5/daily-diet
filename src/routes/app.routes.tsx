@@ -20,7 +20,9 @@ export type RootStackParamList = {
     description: string;
   };
   create: undefined;
-  edit: undefined;
+  edit: {
+    id: string;
+  };
 };
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
