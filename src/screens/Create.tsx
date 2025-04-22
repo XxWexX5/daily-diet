@@ -28,6 +28,7 @@ import { RadioButton } from "@components/RadioButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "@routes/app.routes";
+import { mealCreate, MealType } from "@storage/Meal/mealCreate";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
@@ -52,24 +53,32 @@ export function Create() {
       name: "",
       description: "",
       data: new Date(),
-      timer: getCurrentTime(),
+      time: getCurrentTime(),
       isOnDiet: "",
     },
   });
 
-  function onSubmit(data: any) {
+  async function onSubmit(data: MealType) {
     if (data) {
+      await mealCreate({
+        name: data.name,
+        description: data.description,
+        data: data.data,
+        time: data.time,
+        isOnDiet: data.isOnDiet,
+      });
+
       return setShowFeedback(true);
     }
   }
 
   const { isOnDiet } = getValues();
 
-  if (showFeedback && isOnDiet === "yes") {
+  if (showFeedback && isOnDiet === "1") {
     return <Feedback.Positive />;
   }
 
-  if (showFeedback && isOnDiet === "no") {
+  if (showFeedback && isOnDiet === "0") {
     return <Feedback.Negative />;
   }
 
@@ -169,7 +178,7 @@ export function Create() {
 
                 <Controller
                   control={control}
-                  name="timer"
+                  name="time"
                   rules={{ required: true }}
                   render={({ field: { onChange, value } }) => (
                     <TimeInput
@@ -197,15 +206,15 @@ export function Create() {
                   <View className="flex-row gap-4">
                     <RadioButton.Success
                       label="Sim"
-                      value="yes"
-                      selected={value === "yes"}
+                      value="1"
+                      selected={value === "1"}
                       onSelect={onChange}
                     />
 
                     <RadioButton.Error
                       label="Não"
-                      value="no"
-                      selected={value === "no"}
+                      value="0"
+                      selected={value === "0"}
                       onSelect={onChange}
                     />
                   </View>

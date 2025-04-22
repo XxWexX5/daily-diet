@@ -11,6 +11,7 @@ import { Loader } from "@components/Loader";
 import Routes from "./routes";
 
 import { Host } from "react-native-portalize";
+import { clearStorage } from "@storage/clearStorage";
 
 export default function App() {
   const [loaded] = useFonts({
@@ -21,6 +22,8 @@ export default function App() {
   });
 
   useEffect(() => {
+    //clearStorage();
+
     if (loaded) {
       SplashScreen.hideAsync();
     }
@@ -29,25 +32,6 @@ export default function App() {
   if (!loaded) {
     return <Loader />;
   }
-
-  const DATA = [
-    {
-      title: "Main dishes",
-      data: ["Pizza", "Burger", "Risotto"],
-    },
-    {
-      title: "Sides",
-      data: ["French Fries", "Onion Rings", "Fried Shrimps"],
-    },
-    {
-      title: "Drinks",
-      data: ["Water", "Coke", "Beer"],
-    },
-    {
-      title: "Desserts",
-      data: ["Cheese Cake", "Ice Cream"],
-    },
-  ];
 
   return (
     <Host>
