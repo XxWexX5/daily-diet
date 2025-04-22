@@ -1,6 +1,8 @@
 import { Text, TextProps, TouchableOpacity, View } from "react-native";
+import { twMerge } from "tailwind-merge";
 
 interface TopicProps {
+  className?: string;
   children: React.ReactNode;
   onPress?: () => void;
 }
@@ -41,11 +43,13 @@ function Success() {
 function Content({ children }: { children: React.ReactNode }) {
   return <View className="flex-row items-center gap-4">{children}</View>;
 }
-function Wrapper({ children, onPress }: TopicProps) {
+function Wrapper({ children, onPress, className }: TopicProps) {
   return (
     <TouchableOpacity
       onPress={onPress}
-      className="flex-row items-center justify-between border border-neutral-300 p-5 rounded-default"
+      className={twMerge(
+        `flex-row items-center justify-between border border-neutral-300 p-5 rounded-default ${className}`
+      )}
     >
       {children}
     </TouchableOpacity>
