@@ -1,4 +1,11 @@
-import { View, Text, SafeAreaView, StatusBar, SectionList } from "react-native";
+import {
+  Image,
+  View,
+  Text,
+  SafeAreaView,
+  StatusBar,
+  SectionList,
+} from "react-native";
 
 import { Header } from "@components/Header";
 import { Hero } from "@components/Hero";
@@ -128,6 +135,22 @@ export function Home() {
             keyExtractor={(item, index) => item.item + index}
             ItemSeparatorComponent={() => <View className="h-3"></View>}
             SectionSeparatorComponent={() => <View className="h-6"></View>}
+            ListEmptyComponent={() => (
+              <View className="items-center gap-4">
+                <Title className="font-nunitoLight">
+                  Ops! Parece que você não comeu nada ainda! Que tal uma{" "}
+                  <Text className="font-nunitoBold">maçã Granny Smith</Text>?
+                </Title>
+
+                <View className="w-[20rem] h-[15.5rem]">
+                  <Image
+                    source={require("@images/hungry.png")}
+                    style={{ width: "100%", height: "100%" }}
+                    resizeMode="contain"
+                  />
+                </View>
+              </View>
+            )}
             renderItem={({ item }) => (
               <Topic.Wrapper
                 onPress={() =>
