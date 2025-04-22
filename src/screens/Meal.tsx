@@ -4,6 +4,7 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Modal,
 } from "react-native";
 
 import { useRoute } from "@react-navigation/native";
@@ -22,10 +23,13 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "@routes/app.routes";
 import { useNavigation } from "@react-navigation/native";
+import { useState } from "react";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
 export function Meal() {
+  const [visible, setVisible] = useState(false);
+
   const navigate = useNavigation<NavigationProps>();
 
   const route = useRoute();
@@ -43,6 +47,40 @@ export function Meal() {
         backgroundColor="transparent"
         translucent
       />
+
+      <Modal
+        transparent={true}
+        visible={visible}
+        onRequestClose={() => setVisible(false)}
+      >
+        <View className="flex-1 justify-center items-center p-5 bg-black/50">
+          <View className="p-8 bg-neutral-full rounded-default gap-y-8">
+            <Title className="text-center">
+              Deseja realmente excluir o registro da refeição?
+            </Title>
+
+            <GroupButton.Horizontal>
+              <Button
+                onPress={() => setVisible(false)}
+                className="border border-neutral-900"
+              >
+                <Text className="text-neutral-900 font-nunitoBold text-lg">
+                  Cancelar
+                </Text>
+              </Button>
+
+              <Button
+                onPress={() => setVisible(false)}
+                className="border border-neutral-800 bg-neutral-800"
+              >
+                <Text className="text-neutral-full font-nunitoBold text-lg">
+                  Sim, excluir
+                </Text>
+              </Button>
+            </GroupButton.Horizontal>
+          </View>
+        </View>
+      </Modal>
 
       <View
         className={`relative ${
@@ -97,7 +135,10 @@ export function Meal() {
             </Text>
           </Button>
 
-          <Button className="border border-neutral-900">
+          <Button
+            onPress={() => setVisible(true)}
+            className="border border-neutral-900"
+          >
             <Icon.Trash size={24} color={colors.neutral[900]} />
 
             <Text className="text-neutral-900 font-nunitoBold text-lg">
