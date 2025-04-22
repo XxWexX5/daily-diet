@@ -29,7 +29,13 @@ export function Home() {
 
   function transformMeals(meals: MealType[]) {
     const grouped: {
-      [date: string]: { time: string; item: string; status: string }[];
+      [date: string]: {
+        data: string;
+        time: string;
+        item: string;
+        description: string;
+        status: string;
+      }[];
     } = {};
 
     const sortedMeals = [...meals].sort(
@@ -41,8 +47,10 @@ export function Home() {
       const timeFormatted = formatToHourMinute(new Date(meal.time));
 
       const item = {
+        data: dateKey,
         time: timeFormatted,
-        item: meal.name.trim(),
+        item: meal.name,
+        description: meal.description,
         status: Number(meal.isOnDiet) ? "success" : "error",
       };
 
@@ -92,7 +100,7 @@ export function Home() {
       <View className="bg-neutral-full min-h-screen gap-10 pt-6 px-8">
         <Header />
 
-        <Hero result={resultPercentageOnDiet} />
+        <Hero result={resultPercentageOnDiet || 0} />
 
         <View className="gap-2">
           <Topic.Title className="font-nunitoLight text-xl">
@@ -123,6 +131,10 @@ export function Home() {
                 onPress={() =>
                   navigate.navigate("meal", {
                     isOnDiet: item.status === "success",
+                    data: item.data,
+                    time: item.time,
+                    item: item.item,
+                    description: item.description,
                   })
                 }
               >

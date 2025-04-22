@@ -34,7 +34,13 @@ export function Meal() {
 
   const route = useRoute();
 
-  const { isOnDiet } = route.params as { isOnDiet: boolean };
+  const { isOnDiet, data, time, item, description } = route.params as {
+    isOnDiet: boolean;
+    data: string;
+    time: string;
+    item: string;
+    description: string;
+  };
 
   return (
     <>
@@ -105,10 +111,10 @@ export function Meal() {
       <View className="px-8 py-10 bg-neutral-full flex-1 rounded-3xl">
         <View className="flex-1 gap-y-8">
           <View className="gap-y-1">
-            <Title>Sanduíche</Title>
+            <Title>{item}</Title>
 
             <Text className="font-nunitoLight text-neutral-900 text-xl">
-              Sanduíche de pão integral com atum e salada de alface e tomate.
+              {description}
             </Text>
           </View>
 
@@ -116,7 +122,7 @@ export function Meal() {
             <Title className="text-xl">Data e hora</Title>
 
             <Text className="font-nunitoLight text-neutral-900 text-xl">
-              12/08/2022 às 16:00
+              {data} às {time}
             </Text>
           </View>
 

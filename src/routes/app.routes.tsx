@@ -13,6 +13,10 @@ export type RootStackParamList = {
   };
   meal: {
     isOnDiet: boolean;
+    data: string;
+    time: string;
+    item: string;
+    description: string;
   };
   create: undefined;
   edit: undefined;

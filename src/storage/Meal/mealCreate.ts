@@ -14,9 +14,15 @@ export type MealType = {
 
 export async function mealCreate(newMeal: MealType) {
     try{
+        const generateId = () => {
+            const id = `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+            
+            return id;
+        };
+
         const storedMeals = await mealsGetAll();
 
-        const storage = JSON.stringify([...storedMeals, newMeal]);
+        const storage = JSON.stringify([...storedMeals, {id: generateId(), ...newMeal}]);
 
         await AsyncStorage.setItem(MEAL_COLLECTION, storage);
 

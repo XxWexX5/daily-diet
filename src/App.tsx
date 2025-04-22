@@ -22,7 +22,7 @@ export default function App() {
   });
 
   useEffect(() => {
-    //clearStorage();
+    // clearStorage();
 
     if (loaded) {
       SplashScreen.hideAsync();
