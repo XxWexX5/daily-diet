@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   Keyboard,
   SafeAreaView,
@@ -7,7 +9,9 @@ import {
   Text,
 } from "react-native";
 
-import { useRoute } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Controller, useForm } from "react-hook-form";
+import { Feedback } from "@components/Feedback";
 
 import * as Icon from "phosphor-react-native";
 
@@ -24,8 +28,6 @@ import { RadioButton } from "@components/RadioButton";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "@routes/app.routes";
-import { useNavigation } from "@react-navigation/native";
-import { Controller, useForm } from "react-hook-form";
 
 type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
@@ -35,6 +37,7 @@ const getCurrentTime = () => {
 };
 
 export function Create() {
+  const [showFeedback, setShowFeedback] = useState(false);
   const navigate = useNavigation<NavigationProps>();
 
   const route = useRoute();
@@ -42,6 +45,7 @@ export function Create() {
   const {
     control,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm({
     defaultValues: {
@@ -54,7 +58,19 @@ export function Create() {
   });
 
   function onSubmit(data: any) {
-    console.log("Form data", data);
+    if (data) {
+      return setShowFeedback(true);
+    }
+  }
+
+  const { isOnDiet } = getValues();
+
+  if (showFeedback && isOnDiet === "yes") {
+    return <Feedback.Positive />;
+  }
+
+  if (showFeedback && isOnDiet === "no") {
+    return <Feedback.Negative />;
   }
 
   return (
@@ -176,6 +192,7 @@ export function Create() {
               <Controller
                 control={control}
                 name="isOnDiet"
+                rules={{ required: "Está dentro da dieta é obrigatório" }}
                 render={({ field: { onChange, value } }) => (
                   <View className="flex-row gap-4">
                     <RadioButton.Success
@@ -194,6 +211,12 @@ export function Create() {
                   </View>
                 )}
               />
+
+              {errors.isOnDiet && (
+                <Text className="text-red-500 text-sm">
+                  {errors.isOnDiet.message as string}
+                </Text>
+              )}
             </View>
           </View>
 

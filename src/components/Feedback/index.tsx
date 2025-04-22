@@ -1,10 +1,23 @@
+import { useNavigation } from "@react-navigation/native";
+
 import { Button } from "@components/Button";
 import { Title } from "@components/Title";
 import { Image, Text, View } from "react-native";
 
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+import { RootStackParamList } from "@routes/app.routes";
+
+type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
+
 function ButtonDefault() {
+  const navigate = useNavigation<NavigationProps>();
+
   return (
-    <Button className="bg-neutral-800">
+    <Button
+      onPress={() => navigate.navigate("home")}
+      className="bg-neutral-800"
+    >
       <Text className="text-neutral-full font-nunitoBold text-lg">
         Ir para a página inicial
       </Text>
