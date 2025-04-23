@@ -21,8 +21,6 @@ export async function mealCreate(newMeal: MealType) {
 
         await AsyncStorage.setItem(MEAL_COLLECTION, storage);
 
-        console.log(storage);
-
         return storage;
     }catch(error) {
         throw error;

@@ -152,6 +152,7 @@ export function Create() {
                     onChangeText={onChange}
                     onBlur={() => Keyboard.dismiss()}
                     placeholder="Digite a descrição"
+                    className="overflow-hidden"
                   />
                 )}
               />
