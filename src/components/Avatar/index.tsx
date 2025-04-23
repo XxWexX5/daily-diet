@@ -19,7 +19,6 @@ export function Avatar() {
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 1,
       allowsEditing: true,
       aspect: [1, 1],
