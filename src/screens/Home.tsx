@@ -29,6 +29,7 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 import { formatDateToDDMMYY } from "@utils/formatDateToDDMMYY";
 import { formatToHourMinute } from "@utils/formatToHourMinute";
 import { useEffect, useState } from "react";
+import LottieView from "lottie-react-native";
 
 export function Home() {
   const [meals, setMeals] = useState<MealType[]>([]);
@@ -136,17 +137,18 @@ export function Home() {
             ItemSeparatorComponent={() => <View className="h-3"></View>}
             SectionSeparatorComponent={() => <View className="h-6"></View>}
             ListEmptyComponent={() => (
-              <View className="items-center gap-4">
+              <View className="items-center gap-6">
                 <Title className="font-nunitoLight">
                   Ops! Parece que você não comeu nada ainda! Que tal uma{" "}
                   <Text className="font-nunitoBold">maçã Granny Smith</Text>? 🍎
                 </Title>
 
-                <View className="w-[20rem] h-[15.5rem]">
-                  <Image
-                    source={require("@images/hungry.png")}
+                <View className="w-[22rem] h-[17rem]">
+                  <LottieView
+                    source={require("@assets/animations/food.json")}
+                    autoPlay
+                    loop
                     style={{ width: "100%", height: "100%" }}
-                    resizeMode="contain"
                   />
                 </View>
               </View>

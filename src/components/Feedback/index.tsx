@@ -4,6 +4,8 @@ import { Button } from "@components/Button";
 import { Title } from "@components/Title";
 import { Image, Text, View } from "react-native";
 
+import LottieView from "lottie-react-native";
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "@routes/app.routes";
@@ -37,10 +39,11 @@ function Positive() {
       </View>
 
       <View className="w-[250px] h-[330px]">
-        <Image
-          source={require("@images/image-woman-happy.jpg")}
+        <LottieView
+          source={require("@assets/animations/happy.json")}
+          autoPlay
+          loop
           style={{ width: "100%", height: "100%" }}
-          resizeMode="contain"
         />
       </View>
 
@@ -62,10 +65,11 @@ function Negative() {
       </View>
 
       <View className="w-[250px] h-[330px]">
-        <Image
-          source={require("@images/image-man-sad.jpg")}
+        <LottieView
+          source={require("@assets/animations/sad.json")}
+          autoPlay
+          loop
           style={{ width: "100%", height: "100%" }}
-          resizeMode="contain"
         />
       </View>
 
