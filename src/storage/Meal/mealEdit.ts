@@ -8,7 +8,7 @@ export async function mealEdit(data: MealType) {
     try{
         const storedMeals = await mealsGetAll();
 
-        const removeMeal = storedMeals.filter((meal: MealType) => meal.id !== data.id);
+        const removeMeal = storedMeals.filter((meal: MealType) => meal.id === data.id);
 
         const storage = JSON.stringify([{...removeMeal, ...data}]);
 
