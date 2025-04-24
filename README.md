@@ -51,7 +51,7 @@ npm run start
 
 ## Vídeo demonstrativo:
 
-https://github.com/user-attachments/assets/140ee396-4967-44cc-bf28-5ff36559c701
+https://github.com/user-attachments/assets/ef388523-10a7-4dd5-abe6-9f7eb69bc304
 
 ### Licença
 
